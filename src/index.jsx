@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <StrictMode>
-      <BrowserRouter>
+      <BrowserRouter basename="/forum_diskusi">
         <App />
       </BrowserRouter>
     </StrictMode>
