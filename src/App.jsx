@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { unsetAuthUser } from './states/authUser/action';
 import { isPreloadProcess } from './states/isPreload/action';
-import HeroPage from './pages/HeroPage';
+import HeroPage from './routes/HeroPage';
 import Navigation from './components/Navigation';
-import RegisterPage from './pages/RegisterPage';
-import LoginPage from './pages/LoginPage';
-import DashboardPage from './pages/DashboardPage';
+import RegisterPage from './routes/RegisterPage';
+import LoginPage from './routes/LoginPage';
+import DashboardPage from './routes/DashboardPage';
 import './style/style.css';
-import AddThreadPage from './pages/AddThreadPage';
-import DetailPage from './pages/DetailPage';
-import LeaderboardPage from './pages/LeaderboardPage';
+import AddThreadPage from './routes/AddThreadPage';
+import DetailPage from './routes/DetailPage';
+import LeaderboardPage from './routes/LeaderboardPage';
 import Loading from './components/Loading';
 
 function App() {
