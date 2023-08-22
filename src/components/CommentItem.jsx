@@ -58,9 +58,9 @@ function CommentItem({
               </p>
             </div>
           </section>
-          <p className="text-gray-500">
+          <span className="text-gray-500">
             {parse(content)}
-          </p>
+          </span>
           <div className="flex items-center mt-4 space-x-4" />
           <section className="flex justify-between items-center mb-5">
             <div className="flex items-center">
@@ -71,7 +71,7 @@ function CommentItem({
                   onClick={() => (isCommentUpVoted ? neutralVote(id) : upVote(id))}
                   className="px-2"
                 >
-                  { isCommentUpVoted ? <FaChevronUp className="text-green-500" /> : <FaChevronUp className="hover:text-green-500" />}
+                  { isCommentUpVoted ? <FaChevronUp className="text-green-500" /> : <FaChevronUp className="hover:text-green-300" />}
                 </button>
                 {upVotesBy.length - downVotesBy.length}
                 <button
@@ -80,7 +80,7 @@ function CommentItem({
                   onClick={() => (isCommentDownVoted ? neutralVote(id) : downVote(id))}
                   className="px-2"
                 >
-                  { isCommentDownVoted ? <FaChevronDown className="text-red-500" /> : <FaChevronDown className="hover:text-red-500" />}
+                  { isCommentDownVoted ? <FaChevronDown className="text-red-500" /> : <FaChevronDown className="hover:text-red-300" />}
                 </button>
               </p>
             </div>

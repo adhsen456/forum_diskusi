@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 function ThreadInput({ addThread }) {
   const [body, setBody] = useState('');
@@ -12,12 +14,6 @@ function ThreadInput({ addThread }) {
       setBody('');
       setCategory('');
       setTitle('');
-    }
-  };
-
-  const onChangeBody = (e) => {
-    if (e.target.value.length <= 400) {
-      setBody(e.target.value);
     }
   };
 
@@ -64,24 +60,12 @@ function ThreadInput({ addThread }) {
           Thread
         </label>
         <div className="mb-3">
-          <textarea
-            id="comment"
-            rows="6"
-            value={body}
-            onChange={onChangeBody}
-            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            placeholder="Tulis Thread..."
-            required
-          />
+          <ReactQuill placeholder="Tulis Thread..." theme="snow" value={body} onChange={setBody} />
         </div>
-        <strong>
-          {body.length}
-          /400
-        </strong>
         <div className="mt-5 mb-5">
           <button
             type="submit"
-            // onClick={addAThread}
+            onClick={addAThread}
             className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-primary-200 hover:bg-primary-800"
           >
             Post Thread

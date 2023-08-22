@@ -33,7 +33,7 @@ function App() {
       <main>
         <Loading />
         <Routes>
-          <Route path="/*" element={<HeroPage />} />
+          <Route path="/" element={<HeroPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Routes>

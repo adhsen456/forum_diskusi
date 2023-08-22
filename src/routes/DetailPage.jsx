@@ -12,15 +12,16 @@ import { populateDetailAndComments } from '../states/shared/action';
 
 function DetailPage() {
   const { id } = useParams();
+
+  const detailThread = useSelector((states) => states.detailThread);
+  const comments = useSelector((states) => states.comments);
+  const authUser = useSelector((states) => states.authUser);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(populateDetailAndComments(id));
   }, [id, dispatch]);
-
-  const detailThread = useSelector((states) => states.detailThread);
-  const comments = useSelector((states) => states.comments);
-  const authUser = useSelector((states) => states.authUser);
 
   const onUpVoteDetailThread = () => dispatch(toggleUpvoteDetailThread(id));
 
@@ -35,8 +36,6 @@ function DetailPage() {
   const onDownVoteComment = (commentId) => dispatch(toggleDownvoteComment(id, commentId));
 
   const onAddComment = (content) => dispatch(addComment(id, { content }));
-
-  if (typeof (detailThread) === 'undefined') return (<div>No</div>);
 
   return (
     <div className="min-h-full">

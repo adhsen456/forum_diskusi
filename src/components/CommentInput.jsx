@@ -1,22 +1,15 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-// import { useParams } from 'react-router-dom';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 function CommentInput({ addingComment }) {
   const [comment, setComment] = useState('');
-  // const { id } = useParams();
 
-  const addAComment = (e) => {
-    e.stopPropagation();
+  const addAComment = () => {
     if (comment.trim()) {
       addingComment(comment);
       setComment('');
-    }
-  };
-
-  const onChangeComment = (e) => {
-    if (e.target.value.length <= 400) {
-      setComment(e.target.value);
     }
   };
 
@@ -28,23 +21,9 @@ function CommentInput({ addingComment }) {
             Tambahkan Komentar
           </h1>
         </div>
-        {/* <label className="block text-md font-semibold leading-6 text-gray-900">
-          Tambahkan Komentar
-        </label> */}
         <div className="mb-3">
-          <textarea
-            rows="6"
-            value={comment}
-            onChange={onChangeComment}
-            className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            placeholder="Tulis Komentar..."
-            required
-          />
+          <ReactQuill placeholder="Masukkan komentar" theme="snow" value={comment} onChange={setComment} />
         </div>
-        <strong>
-          {comment.length}
-          /400
-        </strong>
         <div className="mt-5 mb-5">
           <button
             type="submit"
@@ -60,7 +39,6 @@ function CommentInput({ addingComment }) {
 }
 
 CommentInput.propTypes = {
-  // id: PropTypes.string.isRequired,
   addingComment: PropTypes.func.isRequired,
 };
 

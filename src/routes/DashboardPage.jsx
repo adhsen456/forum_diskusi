@@ -9,7 +9,6 @@ import ThreadsList from '../components/ThreadsList';
 
 function DashboardPage() {
   const threads = useSelector((states) => states.threads);
-  const users = useSelector((states) => states.users);
   const authUser = useSelector((states) => states.authUser);
 
   const dispatch = useDispatch();
@@ -18,26 +17,11 @@ function DashboardPage() {
     dispatch(populateUsersAndThreads());
   }, [dispatch]);
 
-  const onDownVote = (id) => {
-    dispatch(toggleDownvote(id));
-    window.location.reload();
-  };
+  const onDownVote = (id) => dispatch(toggleDownvote(id));
 
-  const onNeutralVote = (id) => {
-    dispatch(toggleNeutralvote(id));
-    window.location.reload();
-  };
-  const onUpVote = (id) => {
-    dispatch(toggleUpvote(id));
-    window.location.reload();
-  };
+  const onNeutralVote = (id) => dispatch(toggleNeutralvote(id));
 
-  const threadsList = threads.map((thread) => ({
-    ...thread,
-    user: users.find((user) => user.id === thread.ownerId),
-  }));
-
-  if (!threads) return (<div>No</div>);
+  const onUpVote = (id) => dispatch(toggleUpvote(id));
 
   return (
     <div className="min-h-full">
@@ -59,11 +43,11 @@ function DashboardPage() {
         </div>
         <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
           <ThreadsList
-            threads={threadsList}
+            threads={threads}
             authUser={authUser.id}
+            downVote={onDownVote}
             upVote={onUpVote}
             neutralVote={onNeutralVote}
-            downVote={onDownVote}
           />
         </div>
       </main>

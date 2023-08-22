@@ -10,6 +10,7 @@ root.render(
   <Provider store={store}>
     <StrictMode>
       <BrowserRouter basename="/forum_diskusi">
+        {/* <BrowserRouter> */}
         <App />
       </BrowserRouter>
     </StrictMode>

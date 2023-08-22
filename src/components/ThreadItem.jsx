@@ -6,27 +6,32 @@ import parse from 'html-react-parser';
 import postedAt from '../data/timePosted';
 
 function ThreadItem({
-  id, title, body, category, user, upVotesBy,
-  downVotesBy, authUser, createdAt,
-  downVote, upVote, neutralVote, totalComments,
+  thread, authUser, downVote, upVote, neutralVote,
 }) {
+  const {
+    id, title, body, category, owner, upVotesBy,
+    downVotesBy, createdAt, totalComments,
+  } = { ...thread };
+
+  const { name, avatar } = { ...owner };
+
   const navigate = useNavigate();
   const isThreadDownVoted = downVotesBy.includes(authUser);
   const isThreadUpVoted = upVotesBy.includes(authUser);
 
-  const onDownVoteClick = (e) => {
-    e.stopPropagation();
-    downVote(id);
-  };
+  // const onDownVoteClick = (e) => {
+  //   // e.stopPropagation();
+  //   downVote(id);
+  // };
 
-  const onNeutralVoteClick = (e) => {
-    e.stopPropagation();
-    neutralVote(id);
-  };
-  const onUpVoteClick = (e) => {
-    e.stopPropagation();
-    upVote(id);
-  };
+  // const onNeutralVoteClick = (e) => {
+  //   // e.stopPropagation();
+  //   neutralVote(id);
+  // };
+  // const onUpVoteClick = (e) => {
+  //   // e.stopPropagation();
+  //   upVote(id);
+  // };
 
   const onThreadClick = () => {
     navigate(`/threads/${id}`);
@@ -55,10 +60,10 @@ function ThreadItem({
               <span className="inline-flex items-center mr-3 text-md text-gray-900">
                 <img
                   className="mr-2 w-8 h-8 rounded-full"
-                  src={user.avatar}
-                  alt={user.name}
+                  src={avatar}
+                  alt={name}
                 />
-                <strong>{user.name}</strong>
+                <strong>{name}</strong>
                 {' '}
               </span>
               <span className="mx-50 text-xs text-gray-600 items-right">
@@ -85,24 +90,25 @@ function ThreadItem({
           </div>
           <div className="flex items-center mt-4 space-x-4" />
           <section className="flex justify-between items-center mb-5">
+
             <div className="flex items-center">
               <span className="inline-flex items-center mr-3 text-md text-gray-900">
                 <button
                   type="button"
                   aria-label="up-vote"
-                  onClick={isThreadUpVoted ? onNeutralVoteClick : onUpVoteClick}
+                  onClick={() => (isThreadUpVoted ? neutralVote(id) : upVote(id))}
                   className="px-2"
                 >
-                  { isThreadUpVoted ? <FaChevronUp className="text-green-500" /> : <FaChevronUp className="hover:text-green-500" />}
+                  { isThreadUpVoted ? <FaChevronUp className="text-green-500" /> : <FaChevronUp className="hover:text-green-300" />}
                 </button>
                 {upVotesBy.length - downVotesBy.length}
                 <button
                   type="button"
                   aria-label="down-vote"
-                  onClick={isThreadDownVoted ? onNeutralVoteClick : onDownVoteClick}
+                  onClick={() => (isThreadDownVoted ? neutralVote(id) : downVote(id))}
                   className="px-2"
                 >
-                  { isThreadDownVoted ? <FaChevronDown className="text-red-500" /> : <FaChevronDown className="hover:text-red-500" />}
+                  { isThreadDownVoted ? <FaChevronDown className="text-red-500" /> : <FaChevronDown className="hover:text-red-300" />}
                 </button>
                 <button
                   type="button"
@@ -133,15 +139,16 @@ const threadItemShape = {
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
+  ownerId: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
-  user: PropTypes.shape(userShape).isRequired,
+  owner: PropTypes.shape(userShape).isRequired,
   upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
   totalComments: PropTypes.number.isRequired,
 };
 
 ThreadItem.propTypes = {
-  ...threadItemShape,
+  thread: PropTypes.shape(threadItemShape).isRequired,
   authUser: PropTypes.string.isRequired,
   neutralVote: PropTypes.func,
   upVote: PropTypes.func,

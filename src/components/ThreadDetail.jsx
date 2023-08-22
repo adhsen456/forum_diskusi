@@ -57,7 +57,7 @@ function ThreadDetail({
                 onClick={() => (isThreadUpVoted ? neutralVote() : upVote())}
                 className="px-2"
               >
-                { isThreadUpVoted ? <FaChevronUp style={{ color: 'green' }} /> : <FaChevronUp className="hover:text-green-500" />}
+                { isThreadUpVoted ? <FaChevronUp style={{ color: 'green' }} /> : <FaChevronUp className="hover:text-green-300" />}
               </button>
               {upVotesBy.length - downVotesBy.length}
               <button
@@ -66,7 +66,7 @@ function ThreadDetail({
                 onClick={() => (isThreadDownVoted ? neutralVote() : downVote())}
                 className="px-2"
               >
-                { isThreadDownVoted ? <FaChevronDown style={{ color: 'red' }} /> : <FaChevronDown className="hover:text-red-500" />}
+                { isThreadDownVoted ? <FaChevronDown style={{ color: 'red' }} /> : <FaChevronDown className="hover:text-red-300" />}
               </button>
             </span>
           </article>

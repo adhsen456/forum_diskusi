@@ -24,10 +24,12 @@ function LeaderboardItem({ user, score, authUser }) {
             </p>
           </div>
         </div>
-        <div className="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+        <div className="shrink-0 sm:flex sm:flex-col">
           <p className="text-md leading-6 text-gray-900">SCORE</p>
-          <p className="mt-1 text-lg leading-5 text-gray-800">
-            <strong>{score}</strong>
+          <p className="mt-1 text-center text-lg leading-5 text-gray-800">
+            <strong>
+              {score}
+            </strong>
           </p>
         </div>
       </li>

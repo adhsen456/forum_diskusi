@@ -17,6 +17,7 @@ const commentReducer = (comments = [], action = {}) => {
             upVotesBy: comment.upVotesBy.filter((id) => id !== action.payload.userId),
           };
         }
+        return comment;
       });
     case Action.TOGGLE_NEUTRALVOTE_COMMENT:
       return comments.map((comment) => {
@@ -31,6 +32,7 @@ const commentReducer = (comments = [], action = {}) => {
               : comment.upVotesBy,
           };
         }
+        return comment;
       });
     case Action.TOGGLE_UPVOTE_COMMENT:
       return comments.map((comment) => {
@@ -41,6 +43,7 @@ const commentReducer = (comments = [], action = {}) => {
             downVotesBy: comment.downVotesBy.filter((id) => id !== action.payload.userId),
           };
         }
+        return comment;
       });
     default:
       return comments;

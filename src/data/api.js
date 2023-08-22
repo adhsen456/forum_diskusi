@@ -81,7 +81,7 @@ const api = (() => {
     }
 
     const { data: { users } } = responseJson;
-
+    // console.log(users);
     return users;
   }
 
@@ -141,9 +141,15 @@ const api = (() => {
       throw new Error(message);
     }
 
+    const users = await getAllUsers();
     const { data: { threads } } = responseJson;
 
-    return threads;
+    const threadsAll = threads.map((thread) => ({
+      ...thread,
+      owner: users.find((user) => user.id === thread.ownerId),
+    }));
+
+    return threadsAll;
   }
 
   async function getDetailThread(id) {

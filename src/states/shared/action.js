@@ -9,10 +9,10 @@ import api from '../../data/api';
 const populateUsersAndThreads = () => async (dispatch) => {
   dispatch(showLoading());
   try {
-    const threads = await api.getAllThreads();
     const users = await api.getAllUsers();
-    dispatch(receiveThreadsActionCreator(threads));
+    const threads = await api.getAllThreads();
     dispatch(receiveUsersActionCreator(users));
+    dispatch(receiveThreadsActionCreator(threads));
   } catch (e) {
     alert(e.message);
   }

@@ -37,7 +37,7 @@ function ThreadsList({
         { threads.map((thread) => (
           <ThreadItem
             key={thread.id}
-            {...thread}
+            thread={thread}
             authUser={authUser}
             neutralVote={neutralVote}
             upVote={upVote}

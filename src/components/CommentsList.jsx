@@ -12,7 +12,7 @@ function CommentsList({
         {comments.length}
         )
       </h2>
-      { comments.length !== 0
+      { comments.length > 0
         ? comments.map((comment) => (
           <CommentItem
             key={comment.id}
